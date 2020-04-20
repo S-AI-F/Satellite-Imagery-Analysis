@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Classify | Spatial data analysis</title>
+  <meta name="description" content="Chapter 6 Classify | Spatial data analysis" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Classify | Spatial data analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Classify | Spatial data analysis" />
+  
+  
+  
+
+<meta name="author" content="Saif Shabou" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="supervised-classifcation.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="data-exploration.html"><a href="data-exploration.html"><i class="fa fa-check"></i><b>2</b> Data exploration</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-exploration.html"><a href="data-exploration.html#get-remote-sensing-data"><i class="fa fa-check"></i><b>2.1</b> Get remote sensing data</a></li>
+<li class="chapter" data-level="2.2" data-path="data-exploration.html"><a href="data-exploration.html#data-visualization"><i class="fa fa-check"></i><b>2.2</b> Data visualization</a></li>
+<li class="chapter" data-level="2.3" data-path="data-exploration.html"><a href="data-exploration.html#subset-and-rename-bands"><i class="fa fa-check"></i><b>2.3</b> Subset and rename bands</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-exploration.html"><a href="data-exploration.html#load-all-the-layers"><i class="fa fa-check"></i><b>2.3.1</b> load all the layers</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data-exploration.html"><a href="data-exploration.html#spatial-subset"><i class="fa fa-check"></i><b>2.3.2</b> Spatial subset</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data-exploration.html"><a href="data-exploration.html#spectral-profiles"><i class="fa fa-check"></i><b>2.4</b> Spectral profiles</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="computation-of-indicators.html"><a href="computation-of-indicators.html"><i class="fa fa-check"></i><b>3</b> Computation of indicators</a><ul>
+<li class="chapter" data-level="3.1" data-path="computation-of-indicators.html"><a href="computation-of-indicators.html#ndvi-index"><i class="fa fa-check"></i><b>3.1</b> NDVI Index</a></li>
+<li class="chapter" data-level="3.2" data-path="computation-of-indicators.html"><a href="computation-of-indicators.html#principal-component-analysis"><i class="fa fa-check"></i><b>3.2</b> Principal Component Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="clustering.html"><a href="clustering.html"><i class="fa fa-check"></i><b>4</b> Clustering</a></li>
+<li class="chapter" data-level="5" data-path="supervised-classifcation.html"><a href="supervised-classifcation.html"><i class="fa fa-check"></i><b>5</b> Supervised Classifcation</a><ul>
+<li class="chapter" data-level="5.1" data-path="supervised-classifcation.html"><a href="supervised-classifcation.html#reference-data"><i class="fa fa-check"></i><b>5.1</b> Reference data</a></li>
+<li class="chapter" data-level="5.2" data-path="supervised-classifcation.html"><a href="supervised-classifcation.html#generate-sample-sites"><i class="fa fa-check"></i><b>5.2</b> Generate sample sites</a></li>
+<li class="chapter" data-level="5.3" data-path="supervised-classifcation.html"><a href="supervised-classifcation.html#extract-values-for-sites"><i class="fa fa-check"></i><b>5.3</b> Extract values for sites</a></li>
+<li class="chapter" data-level="5.4" data-path="supervised-classifcation.html"><a href="supervised-classifcation.html#train-the-classifier"><i class="fa fa-check"></i><b>5.4</b> Train the classifier</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="classify.html"><a href="classify.html"><i class="fa fa-check"></i><b>6</b> Classify</a><ul>
+<li class="chapter" data-level="6.1" data-path="classify.html"><a href="classify.html#model-evaluation"><i class="fa fa-check"></i><b>6.1</b> Model Evaluation</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="classify.html"><a href="classify.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>6.1.1</b> K-fold cross validation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="classify.html"><a href="classify.html#overall-accuracy"><i class="fa fa-check"></i><b>6.1.2</b> Overall accuracy</a></li>
+<li class="chapter" data-level="6.1.3" data-path="classify.html"><a href="classify.html#kappa-statistic"><i class="fa fa-check"></i><b>6.1.3</b> Kappa statistic</a></li>
+<li class="chapter" data-level="6.1.4" data-path="classify.html"><a href="classify.html#producer-and-user-accuracy"><i class="fa fa-check"></i><b>6.1.4</b> Producer and user accuracy</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Spatial data analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="classify" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Classify</h1>
+<p>Now we have a trained classification model that we can use to classify the cells in the landsat rasterstack.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Now predict the subset data based on the model; prediction for entire area takes longer time</span></a>
+<a class="sourceLine" id="cb59-2" title="2">pr2011 &lt;-<span class="st"> </span><span class="kw">predict</span>(landsat5, cart, <span class="dt">type=</span><span class="st">&#39;class&#39;</span>)</a>
+<a class="sourceLine" id="cb59-3" title="3">pr2011</a></code></pre></div>
+<pre><code>## class      : RasterLayer 
+## dimensions : 1230, 1877, 2308710  (nrow, ncol, ncell)
+## resolution : 0.0002694946, 0.0002694946  (x, y)
+## extent     : -121.9258, -121.42, 37.85402, 38.1855  (xmin, xmax, ymin, ymax)
+## crs        : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## source     : memory
+## names      : layer 
+## values     : 1, 9  (min, max)
+## attributes :
+##        ID value
+##  from:  1     1
+##   to :  8     9</code></pre>
+<p>We can plot the classification results</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">pr2011 &lt;-<span class="st"> </span><span class="kw">ratify</span>(pr2011)</a>
+<a class="sourceLine" id="cb61-2" title="2">rat &lt;-<span class="st"> </span><span class="kw">levels</span>(pr2011)[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb61-3" title="3">rat<span class="op">$</span>legend &lt;-<span class="st"> </span>classdf<span class="op">$</span>classnames</a>
+<a class="sourceLine" id="cb61-4" title="4"><span class="kw">levels</span>(pr2011) &lt;-<span class="st"> </span>rat</a>
+<a class="sourceLine" id="cb61-5" title="5"><span class="kw">levelplot</span>(pr2011, <span class="dt">maxpixels =</span> <span class="fl">1e6</span>,</a>
+<a class="sourceLine" id="cb61-6" title="6">          <span class="dt">col.regions =</span> classcolor,</a>
+<a class="sourceLine" id="cb61-7" title="7">          <span class="dt">scales=</span><span class="kw">list</span>(<span class="dt">draw=</span><span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb61-8" title="8">          <span class="dt">main =</span> <span class="st">&quot;Decision Tree classification of Landsat 5&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>We can plot side by side the real and predicted land cover in order to assess the classification model accuracy</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">plot1 =<span class="st"> </span><span class="kw">levelplot</span>(nlcd2011, <span class="dt">maxpixels =</span> <span class="fl">1e6</span>,</a>
+<a class="sourceLine" id="cb62-2" title="2">          <span class="dt">col.regions =</span> classcolor,</a>
+<a class="sourceLine" id="cb62-3" title="3">          <span class="dt">scales=</span><span class="kw">list</span>(<span class="dt">draw=</span><span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb62-4" title="4">          <span class="dt">main =</span> <span class="st">&quot;Real land cover oof Landsat 5&quot;</span>)</a>
+<a class="sourceLine" id="cb62-5" title="5">plot2 =<span class="st"> </span><span class="kw">levelplot</span>(pr2011, <span class="dt">maxpixels =</span> <span class="fl">1e6</span>,</a>
+<a class="sourceLine" id="cb62-6" title="6">          <span class="dt">col.regions =</span> classcolor,</a>
+<a class="sourceLine" id="cb62-7" title="7">          <span class="dt">scales=</span><span class="kw">list</span>(<span class="dt">draw=</span><span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb62-8" title="8">          <span class="dt">main =</span> <span class="st">&quot;Decision Tree classification of Landsat 5&quot;</span>)</a>
+<a class="sourceLine" id="cb62-9" title="9"></a>
+<a class="sourceLine" id="cb62-10" title="10"><span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb62-11" title="11"><span class="kw">grid.arrange</span>(plot1,plot2, <span class="dt">ncol=</span><span class="dv">2</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div id="model-evaluation" class="section level2">
+<h2><span class="header-section-number">6.1</span> Model Evaluation</h2>
+<p>Now we have to assess the accuracy of the model. Two metrics are widely used in remote sensing: “overall accuracy” and “kappa”.</p>
+<div id="k-fold-cross-validation" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> K-fold cross validation</h3>
+<p>We will use k-fold cross validation for the model evaluation. This technique consists on splitting the data to fit the model into k groups. In turn, one of the groups will be used for model testing, while the rest of the data is used for model training.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">library</span>(dismo)</a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="kw">set.seed</span>(<span class="dv">99</span>)</a>
+<a class="sourceLine" id="cb63-3" title="3">j &lt;-<span class="st"> </span><span class="kw">kfold</span>(sampdata, <span class="dt">k =</span> <span class="dv">5</span>, <span class="dt">by=</span>sampdata<span class="op">$</span>classvalue)</a>
+<a class="sourceLine" id="cb63-4" title="4"><span class="kw">table</span>(j)</a></code></pre></div>
+<pre><code>## j
+##   1   2   3   4   5 
+## 320 320 320 320 320</code></pre>
+<p>Now we trainand test the model five times, each time computing a confusion matrix that we store in a list.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">x &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb65-2" title="2"><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb65-3" title="3">  train &lt;-<span class="st"> </span>sampdata[j<span class="op">!=</span><span class="st"> </span>k, ]</a>
+<a class="sourceLine" id="cb65-4" title="4">  test &lt;-<span class="st"> </span>sampdata[j <span class="op">==</span><span class="st"> </span>k, ]</a>
+<a class="sourceLine" id="cb65-5" title="5">  cart &lt;-<span class="st"> </span><span class="kw">rpart</span>(<span class="kw">as.factor</span>(classvalue)<span class="op">~</span>., <span class="dt">data=</span>train, <span class="dt">method =</span> <span class="st">&#39;class&#39;</span>, <span class="dt">minsplit =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb65-6" title="6">  pclass &lt;-<span class="st"> </span><span class="kw">predict</span>(cart, test, <span class="dt">type=</span><span class="st">&#39;class&#39;</span>)</a>
+<a class="sourceLine" id="cb65-7" title="7">  <span class="co"># create a data.frame using the reference and prediction</span></a>
+<a class="sourceLine" id="cb65-8" title="8">  x[[k]] &lt;-<span class="st"> </span><span class="kw">cbind</span>(test<span class="op">$</span>classvalue, <span class="kw">as.integer</span>(pclass))</a>
+<a class="sourceLine" id="cb65-9" title="9">}</a></code></pre></div>
+<p>Now we combine the five list elements in a single dataframe</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">y &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, x)</a>
+<a class="sourceLine" id="cb66-2" title="2">y &lt;-<span class="st"> </span><span class="kw">data.frame</span>(y)</a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="kw">colnames</span>(y) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;observed&#39;</span>, <span class="st">&#39;predicted&#39;</span>)</a>
+<a class="sourceLine" id="cb66-4" title="4">conmat &lt;-<span class="st"> </span><span class="kw">table</span>(y)</a>
+<a class="sourceLine" id="cb66-5" title="5"><span class="co"># change the name of the classes</span></a>
+<a class="sourceLine" id="cb66-6" title="6"><span class="kw">colnames</span>(conmat) &lt;-<span class="st"> </span>classdf<span class="op">$</span>classnames</a>
+<a class="sourceLine" id="cb66-7" title="7"><span class="kw">rownames</span>(conmat) &lt;-<span class="st"> </span>classdf<span class="op">$</span>classnames</a>
+<a class="sourceLine" id="cb66-8" title="8">conmat</a></code></pre></div>
+<pre><code>##                     predicted
+## observed             Water Developed Barren Forest Shrubland Herbaceous
+##   Water                175         6      0      3         0          0
+##   Developed              2        90     51      8        10         22
+##   Barren                 7        39     82      4        19         38
+##   Forest                 0         2      1    106        57          1
+##   Shrubland              0         3      5     59       102         12
+##   Herbaceous             0         9     36     10        27        109
+##   Planted/Cultivated     0         7     11     34        42         19
+##   Wetlands              18        10      6     36        29          5
+##                     predicted
+## observed             Planted/Cultivated Wetlands
+##   Water                               7        9
+##   Developed                          11        6
+##   Barren                              5        6
+##   Forest                              6       27
+##   Shrubland                          12        7
+##   Herbaceous                          8        1
+##   Planted/Cultivated                 69       18
+##   Wetlands                           33       63</code></pre>
+</div>
+<div id="overall-accuracy" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Overall accuracy</h3>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># number of cases</span></a>
+<a class="sourceLine" id="cb68-2" title="2">n &lt;-<span class="st"> </span><span class="kw">sum</span>(conmat)</a>
+<a class="sourceLine" id="cb68-3" title="3">n</a></code></pre></div>
+<pre><code>## [1] 1600</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># number of correctly classified cases per class</span></a>
+<a class="sourceLine" id="cb70-2" title="2">diag &lt;-<span class="st"> </span><span class="kw">diag</span>(conmat)</a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="co"># Overall Accuracy</span></a>
+<a class="sourceLine" id="cb70-4" title="4">OA &lt;-<span class="st"> </span><span class="kw">sum</span>(diag) <span class="op">/</span><span class="st"> </span>n</a>
+<a class="sourceLine" id="cb70-5" title="5">OA</a></code></pre></div>
+<pre><code>## [1] 0.4975</code></pre>
+</div>
+<div id="kappa-statistic" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Kappa statistic</h3>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># observed (true) cases per class</span></a>
+<a class="sourceLine" id="cb72-2" title="2">rowsums &lt;-<span class="st"> </span><span class="kw">apply</span>(conmat, <span class="dv">1</span>, sum)</a>
+<a class="sourceLine" id="cb72-3" title="3">p &lt;-<span class="st"> </span>rowsums <span class="op">/</span><span class="st"> </span>n</a>
+<a class="sourceLine" id="cb72-4" title="4"><span class="co"># predicted cases per class</span></a>
+<a class="sourceLine" id="cb72-5" title="5">colsums &lt;-<span class="st"> </span><span class="kw">apply</span>(conmat, <span class="dv">2</span>, sum)</a>
+<a class="sourceLine" id="cb72-6" title="6">q &lt;-<span class="st"> </span>colsums <span class="op">/</span><span class="st"> </span>n</a>
+<a class="sourceLine" id="cb72-7" title="7">expAccuracy &lt;-<span class="st"> </span><span class="kw">sum</span>(p<span class="op">*</span>q)</a>
+<a class="sourceLine" id="cb72-8" title="8">kappa &lt;-<span class="st"> </span>(OA <span class="op">-</span><span class="st"> </span>expAccuracy) <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>expAccuracy)</a>
+<a class="sourceLine" id="cb72-9" title="9">kappa</a></code></pre></div>
+<pre><code>## [1] 0.4257143</code></pre>
+</div>
+<div id="producer-and-user-accuracy" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Producer and user accuracy</h3>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co"># Producer accuracy</span></a>
+<a class="sourceLine" id="cb74-2" title="2">PA &lt;-<span class="st"> </span>diag <span class="op">/</span><span class="st"> </span>colsums</a>
+<a class="sourceLine" id="cb74-3" title="3"><span class="co"># User accuracy</span></a>
+<a class="sourceLine" id="cb74-4" title="4">UA &lt;-<span class="st"> </span>diag <span class="op">/</span><span class="st"> </span>rowsums</a>
+<a class="sourceLine" id="cb74-5" title="5">outAcc &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">producerAccuracy =</span> PA, <span class="dt">userAccuracy =</span> UA)</a>
+<a class="sourceLine" id="cb74-6" title="6">outAcc</a></code></pre></div>
+<pre><code>##                    producerAccuracy userAccuracy
+## Water                     0.8663366        0.875
+## Developed                 0.5421687        0.450
+## Barren                    0.4270833        0.410
+## Forest                    0.4076923        0.530
+## Shrubland                 0.3566434        0.510
+## Herbaceous                0.5291262        0.545
+## Planted/Cultivated        0.4569536        0.345
+## Wetlands                  0.4598540        0.315</code></pre>
+<!-- If you need PDF output, uncomment bookdown::pdf_book above in YAML. You will need a LaTeX installation, e.g., https://yihui.name/tinytex/ -->
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="supervised-classifcation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
